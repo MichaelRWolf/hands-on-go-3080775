@@ -6,10 +6,6 @@ import (
 	"github.com/jboursiquot/go-proverbs"
 )
 
-// import the proverbs package
-
-// getRandomProverb returns a random proverb from the proverbs package
-
 func main() {
 	fmt.Println(getRandomProverb())
 	// print the result of calling your getRandomProverb function
