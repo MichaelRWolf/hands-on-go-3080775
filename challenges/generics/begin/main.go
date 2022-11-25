@@ -13,7 +13,7 @@ import "fmt"
 
 // func printBool(b bool) { fmt.Println(b) }
 
-func printStringOrIntOrBool [T string | int | bool] (val T) {
+func PrintAny [T string | int | bool] (val T) {
     fmt.Println(val)
 }
 
@@ -42,9 +42,9 @@ func main() {
 	// printBool(true)
 
 	// call generic printAny function for each value above
-	printStringOrIntOrBool("Hello")
-	printStringOrIntOrBool(42)
-	printStringOrIntOrBool(true)
+	PrintAny("Hello")
+	PrintAny(42)
+	PrintAny(true)
 
 
 
