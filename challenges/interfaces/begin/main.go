@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
@@ -55,12 +56,12 @@ func doAnalysis(data string, counters ...counter) map[string]int {
 	// capture the length of the words in the data
 	analysis["words"] = len(strings.Fields(data))
 
-	// loop over the counters and use their name as the key
-	for _, c := range counters {
-		analysis[c.name()] = c.count(data)
+	for i, c := range counters {
+		key := strconv.Itoa(i) + "_" + c.name()
+		value := c.count(data)
+		analysis[key] = value
 	}
 
-	// return the map
 	return analysis
 }
 
@@ -77,19 +78,16 @@ func main() {
    	input_file_name = os.Args[1]
 	}
 
-	bs, err := os.ReadFile(input_file_name)
+	data_bytes, err := os.ReadFile(input_file_name)
 	if err != nil {
 		panic(fmt.Errorf("failed to read file: %s", err))
 	}
 	
-	// convert the bytes to a string
-	data := string(bs)
-	spew.Dump(data)
-
-
+	data_string := string(data_bytes)
+	spew.Dump(data_string)
 
 	analysis :=	doAnalysis(
-		data, 
+		data_string, 
 		letterCounter      { identifier: "letters"},
 		deepThoughtCounter { question: "What is the answer to life, the Universe, and everything?"},
 		numberCounter      { designation:  "One, two, buckle my shoe" },
