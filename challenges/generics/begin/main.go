@@ -13,6 +13,10 @@ func printInt(i int) { fmt.Println(i) }
 
 func printBool(b bool) { fmt.Println(b) }
 
+func printStringOrIntOrBool [T string | int | bool] (val T) {
+    fmt.Println(val)
+}
+
 // Part 2 sum function refactoring
 
 // sum sums a slice of any type
@@ -33,11 +37,16 @@ func sum(numbers []interface{}) interface{} {
 
 func main() {
 	// call non-generic print functions
-	printString("Hello")
-	printInt(42)
-	printBool(true)
+	// printString("Hello")
+	// printInt(42)
+	// printBool(true)
 
 	// call generic printAny function for each value above
+	printStringOrIntOrBool("Hello")
+	printStringOrIntOrBool(42)
+	printStringOrIntOrBool(true)
+
+
 
 	// call sum function
 	fmt.Println("result", sum([]interface{}{1, 2, 3}))
