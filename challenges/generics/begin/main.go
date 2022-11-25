@@ -7,11 +7,11 @@ import "fmt"
 
 // non-generic print functions
 
-func printString(s string) { fmt.Println(s) }
+// func printString(s string) { fmt.Println(s) }
 
-func printInt(i int) { fmt.Println(i) }
+// func printInt(i int) { fmt.Println(i) }
 
-func printBool(b bool) { fmt.Println(b) }
+// func printBool(b bool) { fmt.Println(b) }
 
 func printStringOrIntOrBool [T string | int | bool] (val T) {
     fmt.Println(val)
