@@ -14,11 +14,39 @@ type counter interface {
 	count(input string) int
 }
 
+
+type deepThoughtCounter struct { question string}
+func (pan_dimensional_beings deepThoughtCounter) name() string { 
+	return pan_dimensional_beings.question
+}
+func (pan_dimensional_beings deepThoughtCounter) count(s string) int { 
+	return 42
+}
+
 type letterCounter struct{ identifier string }
+func (lc letterCounter) name() string {
+	return lc.identifier
+}
+func (lc letterCounter) count(s string) int {
+	return 4
+}
 
 type numberCounter struct{ designation string }
+func (nc numberCounter) name() string {
+	return nc.designation
+}
+func (lc numberCounter) count(s string) int {
+	return 44
+}
+
 
 type symbolCounter struct{ label string }
+func (sc symbolCounter) name() string {
+	return sc.label
+}
+func (sc symbolCounter) count(s string) int {
+	return 55
+}
 
 func doAnalysis(data string, counters ...counter) map[string]int {
 	// initialize a map to store the counts
@@ -44,18 +72,29 @@ func main() {
 		}
 	}()
 
-	// use os package to read the file specified as a command line argument
-	bs, err := os.ReadFile(os.Args[1])
+	input_file_name := "/dev/null"
+	if (len(os.Args) == 2) {
+   	input_file_name = os.Args[1]
+	}
+
+	bs, err := os.ReadFile(input_file_name)
 	if err != nil {
 		panic(fmt.Errorf("failed to read file: %s", err))
 	}
-
+	
 	// convert the bytes to a string
 	data := string(bs)
 	spew.Dump(data)
 
-	// call doAnalysis and pass in the data and the counters
 
-	// dump the map to the console using the spew package
-	// spew.Dump(analysis)
+
+	analysis :=	doAnalysis(
+		data, 
+		letterCounter      { identifier: "letters"},
+		deepThoughtCounter { question: "What is the answer to life, the Universe, and everything?"},
+		numberCounter      { designation:  "One, two, buckle my shoe" },
+		symbolCounter      { label: "Lapel"},
+	)
+
+	spew.Dump(analysis)
 }
