@@ -20,6 +20,10 @@
 		"go.gopath": "/go"
 	},
 
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {}
+	}
+
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
     		"GitHub.github-vscode-theme",
